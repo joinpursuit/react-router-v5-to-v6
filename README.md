@@ -1,12 +1,21 @@
-# Updating from React Router Version 5 to Version 6
+# Getting Started with Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## How to Install a Specific Version of an NPM Libarary
 
 Install
 
-- v5:  `npm install react-router-dom@5`
+- v5: `npm install react-router-dom@5`
 
 - v6: `npm install react-router-dom@6`
 
@@ -19,15 +28,6 @@ Install
 ## Try it yourself!
 
 You can fork and clone this repository and try to update this app on your own. Just reading the changes is not enough to fully understand the changes and how to code them.
-
-
-On the `main` branch (on your fork/clone), 
-- run `npm install react-router-dom@6`, 
-- then `npm start`
-- Immediately, the page will not load due to an error
-- Either use the React Router documenation or check the summaries below in order to implement the necessary updates to get the app working again
-- Be sure to click on each link/each page to find all the needed updates
-
 
 There is a branch called `v6` where you can see the final conversion.
 
@@ -56,7 +56,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
   <Route exact path="/">
     <Home />
   </Route>
-</routes>
+</Routes>
 ```
 
 ### No more Nested Elements For Top Level Components
@@ -77,10 +77,10 @@ Use element prop instead
 </Switch>
 
 // New
-<Switch>
+<Routes>
   <Route exact path="/" element={<Home />} />
   <Route path="/plants" element={<Index />}/>
-</Switch>
+</Routes>
 ```
 
 ### No more Exact Prop
@@ -97,10 +97,10 @@ There is now a better algorithm for loading the correct routes
 </Switch>
 
 // New
-<Switch>
+<Routes>
   <Route path="/" element={<Home />} />
   <Route path="/plants" element={<Index />}/>
-</Switch>
+</Routes>
 ```
 
 If you need a route to act as a catchall (behavior when you did not use `exact` prop in V5), you can do so by adding `*`
@@ -177,21 +177,14 @@ Now routes are relative
 </div>
 
 // New
-function Show() {
-  const { id } = useParams();
-  return (
-    <div>
-      <h2>Show Page</h2>
-      <h3>This plant needs medium light and infrequent watering.</h3>
-      <Link to={`/plants/${id}/more-details/`}>
-        See more details about this plant
-      </Link>
-      <Routes>
-        <Route path="more-details" element={<p>This plant is very cool</p>} />
-      </Routes>
-    </div>
-  );
-}
+<div>
+  <h2>Show Page</h2>
+  <h3>This plant needs medium light and infrequent watering.</h3>
+  <Link to={`/more-details`}>See more details about this plant</Link>
+  <Routes>
+    <Route path="/more-details" element={<p>This plant is very cool</p>} />
+  </Routes>
+</div>
 ```
 
 **App.js**
@@ -208,7 +201,7 @@ Move the nested route to App.js
 
 ```js
 <Route path="/welcome/" element={<Welcome />}>
-  <Route path="login" element={<p>You are now logged in</p>} />
+  <Route path="more-details" element={<p>You are now logged in</p>} />
 </Route>
 ```
 
