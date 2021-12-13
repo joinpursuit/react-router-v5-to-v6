@@ -1,9 +1,9 @@
 // DEPENDENCIES
 import {
   BrowserRouter as Router,
-  Redirect,
+  Navigate,
   Route,
-  Switch,
+  Routes,
 } from "react-router-dom";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // PAGES
@@ -22,26 +22,20 @@ function App() {
       <Router>
         <Header />
         <main>
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/welcome" />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Navigate replace to="/welcome" />}
+            />
+            <Route path="/welcome/" element={<Welcome />}>
+              <Route path="login" element={<p>You are now logged in</p>} />
             </Route>
-            <Route path="/welcome">
-              <Welcome />
-            </Route>
-            <Route exact path="/plants">
-              <Index />
-            </Route>
-            <Route path="/plants/new">
-              <New />
-            </Route>
-            <Route exact path="/plants/:id">
-              <Show />
-            </Route>
-            <Route path="*">
-              <FourOFour />
-            </Route>
-          </Switch>
+            <Route exact path="/plants" element={<Index />} />
+            <Route path="/plants/new" element={<New />} />
+            <Route exact path="/plants/:id/*" element={<Show />} />
+            <Route path="*" element={<FourOFour />} />
+          </Routes>
         </main>
       </Router>
     </div>
