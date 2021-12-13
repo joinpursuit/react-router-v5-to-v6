@@ -1,13 +1,113 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Righteous&display=swap");
+
+:root {
+  --primary-black: #252422;
+  --primary-white: #fffcf2;
+  --highlight: darkseagreen;
+  --highlight-contrast: darkgreen;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+h1 {
+  font-family: "Righteous", cursive;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+}
+
+nav {
+  background: var(--highlight);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 3em;
+  box-shadow: 2px 2px 4px grey;
+  margin-bottom: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--highlight-contrast);
+}
+
+a:hover {
+  color: var(--highlight-contrast);
+  opacity: 0.8;
+}
+
+a:active {
+  text-decoration: underline;
+}
+h4 {
+  margin: 0;
+  font-size: 1em;
+  text-align: center;
+}
+
+.Snacks article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.Snacks div {
+  width: 150px;
+  background: var(--primary-white);
+  padding: 1em;
+  box-shadow: 1px 1px 4px grey;
+}
+
+.Snacks img {
+  width: 150px;
+}
+
+/************************************************
+ form & other provided CSS
+ ***********************************************/
+.New form {
+  margin: auto;
+  width: 60%;
+}
+
+input[type],
+textarea {
+  display: block;
+  width: 90%;
+  margin: auto;
+}
+
+input[type="submit"] {
+  width: 30%;
+}
+
+.New section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.New aside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-white);
+  padding: 2em;
+}
+
+img {
+  max-width: 300px;
+}
+
+.Snack {
+  margin-bottom: 1em;
+}
+
+.Snack a span > img {
+  width: 10px;
+  margin: 0 0.5em;
 }

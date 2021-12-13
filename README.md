@@ -8,63 +8,182 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Changes
 
-### `npm test`
+Install npm install react-router-dom@5
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm install react-router-dom@6
 
-### `npm run build`
+nom install react-router-dome@latest
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[React Router Documentation for Upgrading](https://reactrouter.com/docs/en/v6/upgrading/v5)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Summary Video in More Depth](https://www.youtube.com/watch?v=zEQiNFAwDGo)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Switch to Routes
 
-### `npm run eject`
+```js
+// Old
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// New
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```js
+// Old
+<Switch>
+  <Route exact path="/">
+    <Home />
+  </Route>
+</Switch>
+// New
+<Routes>
+  <Route exact path="/">
+    <Home />
+  </Route>
+</routes>
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## No more Nested Elements For Top Level Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Use element prop instead
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```js
+// Old
+<Switch>
+  <Route exact path="/">
+    <Home />
+  </Route>
+  <Route path="/plants">
+    <Index />
+  </Route>
+</Switch>
 
-## Learn More
+// New
+<Switch>
+  <Route exact path="/" element={<Home />} />
+  <Route path="/plants" element={<Index />}/>
+</Switch>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## No more Exact Prop
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+There is now a better algorithm for loading the correct routes
 
-### Code Splitting
+```js
+// Old
+<Switch>
+  <Route exact path="/" element={<Home />} />
+  <Route path="/plants" element={<Index />}/>
+</Switch>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// New
+<Switch>
+  <Route path="/" element={<Home />} />
+  <Route path="/plants" element={<Index />}/>
+</Switch>
+```
 
-### Analyzing the Bundle Size
+If you need a route to act as a catchall (behavior when you did not use `exact` prop in V5), you can do so by adding `*`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```js
+<Switch>
+  <Route path="/" element={<Home />} />
+  <Route path="/plants/*" element={<Index />} />
+</Switch>
+```
 
-### Making a Progressive Web App
+## Navigation After Event: History => useNavigate
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Link/NavLink
 
-### Advanced Configuration
+```js
+// Old
+<NavLink activeClassName={classes.active} />
+// New
+<NavLink className={(navData)=>navData.isActive ? classes.active : ''} />
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Redirects
 
-### Deployment
+```js
+// Old
+<Route exact path="/">
+  <Redirect to="/welcome" />
+</Route>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+// New
+<Route path="/" element={Navigate replace to="/welcome"} />
 
-### `npm run build` fails to minify
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Nested Routes
+
+Must wrap all nested routes `Route` elements with `Routes`.
+
+Now routes are relative
+
+- `/plants/more-details`
+- `/more-details`
+
+**Pages/Show.js**
+
+```js
+// Old
+<div>
+  <h2>Show Page</h2>
+  <h3>This plant needs medium light and infrequent watering.</h3>
+  <Link to={`/plants/more-details`}>See more details about this plant</Link>
+  <Route path="/plants/more-details">
+    <p>This plant is very cool</p>
+  </Route>
+</div>
+
+// New
+<div>
+  <h2>Show Page</h2>
+  <h3>This plant needs medium light and infrequent watering.</h3>
+  <Link to={`/more-details`}>See more details about this plant</Link>
+  <Routes>
+    <Route path="/more-details" element={<p>This plant is very cool</p>} />
+  </Routes>
+</div>
+```
+
+**App.js**
+
+```js
+<Route path="/plants/:id/*" element={<Show />}></Route>
+```
+
+## Nested Route Alternative
+
+Move the nested route to App.js
+
+**App.js**
+
+```js
+<Route path="/welcome/" element={<Welcome />}>
+  <Route path="more-details" element={<p>You are now logged in</p>} />
+</Route>
+```
+
+**Show.js**
+
+You must inform the component _where_ this component should be added
+
+**Show.js**
+
+<Outlet />
+
+```js
+<div>
+  <h2>Show Page</h2>
+  <h3>This plant needs medium light and infrequent watering.</h3>
+  <Link to={`/plants/more-details`}>See more details about this plant</Link>
+  <Outlet />
+</div>
+```
