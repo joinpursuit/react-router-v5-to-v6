@@ -19,7 +19,7 @@ Install
 
 - v6: `npm install react-router-dom@6`
 
-- latest version: npm install react-router-dome@latest (danger, sometimes this will bring in experimental/possibly buggy versions)
+- latest version: `npm install react-router-dome@latest` (danger, sometimes this will bring in experimental/possibly buggy versions)
 
 [React Router Documentation for Upgrading](https://reactrouter.com/docs/en/v6/upgrading/v5)
 
