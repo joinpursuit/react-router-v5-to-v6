@@ -201,7 +201,7 @@ Move the nested route to App.js
 
 ```js
 <Route path="/welcome/" element={<Welcome />}>
-  <Route path="more-details" element={<p>You are now logged in</p>} />
+  <Route path="login" element={<p>You are now logged in</p>} />
 </Route>
 ```
 
