@@ -23,7 +23,15 @@ nom install react-router-dome@latest
 
 [Summary Video in More Depth](https://www.youtube.com/watch?v=zEQiNFAwDGo)
 
+## Try it yourself!
+
+You can fork and clone this repository and try to update this app on your own. Just reading the changes is not enough to fully understand the changes and how to code them.
+
+There is a branch called `v6` where you can see the final conversion.
+
 ## Switch to Routes
+
+**App.js**
 
 ```js
 // Old
@@ -51,6 +59,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 Use element prop instead
 
+**App.js**
+
 ```js
 // Old
 <Switch>
@@ -72,6 +82,8 @@ Use element prop instead
 ## No more Exact Prop
 
 There is now a better algorithm for loading the correct routes
+
+**App.js**
 
 ```js
 // Old
@@ -98,16 +110,34 @@ If you need a route to act as a catchall (behavior when you did not use `exact` 
 
 ## Navigation After Event: History => useNavigate
 
-## Link/NavLink
+**Pages/New.js**
 
 ```js
 // Old
-<NavLink activeClassName={classes.active} />
+
+const history = useHistory();
+const mockSubmit = (e) => {
+  e.preventDefault();
+  history.push("/plants");
+};
+
 // New
-<NavLink className={(navData)=>navData.isActive ? classes.active : ''} />
+const navigate = useNavigate();
+const mockSubmit = (e) => {
+  e.preventDefault();
+  navigate("/plants");
+};
+```
+
+Note, the default behavior is to push onto the navigation stack, if you want to replace, you can pass a second argument to navigate
+
+```js
+navigate("/plants", { replace: true });
 ```
 
 ## Redirects
+
+**App.js**
 
 ```js
 // Old
@@ -171,8 +201,6 @@ Move the nested route to App.js
 </Route>
 ```
 
-**Show.js**
-
 You must inform the component _where_ this component should be added
 
 **Show.js**
@@ -186,4 +214,19 @@ You must inform the component _where_ this component should be added
   <Link to={`/plants/more-details`}>See more details about this plant</Link>
   <Outlet />
 </div>
+```
+
+## Bonus
+
+If you used the psuedoclass for active links in navigation this is what it would convert to.
+
+There is no code in this app to demonstrate this.
+
+### Link/NavLink
+
+```js
+// Old
+<NavLink activeClassName={classes.active} />
+// New
+<NavLink className={(navData)=>navData.isActive ? classes.active : ''} />
 ```
