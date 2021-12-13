@@ -26,6 +26,7 @@ On the `main` branch (on your fork/clone),
 - then `npm start`
 - Immediately, the page will not load due to an error
 - Either use the React Router documenation or check the summaries below in order to implement the necessary updates to get the app working again
+- Be sure to click on each link/each page to find all the needed updates
 
 
 There is a branch called `v6` where you can see the final conversion.
