@@ -177,14 +177,16 @@ Now routes are relative
 </div>
 
 // New
-<div>
-  <h2>Show Page</h2>
-  <h3>This plant needs medium light and infrequent watering.</h3>
-  <Link to={`/more-details`}>See more details about this plant</Link>
-  <Routes>
-    <Route path="/more-details" element={<p>This plant is very cool</p>} />
-  </Routes>
-</div>
+   <div>
+      <h2>Show Page</h2>
+      <h3>This plant needs medium light and infrequent watering.</h3>
+      <Link to={`/plants/${id}/more-details/`}>
+        See more details about this plant
+      </Link>
+      <Routes>
+        <Route path="more-details" element={<p>This plant is very cool</p>} />
+      </Routes>
+    </div>
 ```
 
 **App.js**
