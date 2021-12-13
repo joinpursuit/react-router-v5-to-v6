@@ -11,13 +11,15 @@ In the project directory, you can run:
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Changes
+## How to Install a Specific Version of an NPM Libarary
 
-Install npm install react-router-dom@5
+Install
 
-npm install react-router-dom@6
+- v5:  `npm install react-router-dom@5`
 
-nom install react-router-dome@latest
+- v6: `npm install react-router-dom@6`
+
+- latest version: npm install react-router-dome@latest (danger, sometimes this will bring in experimental/possibly buggy versions)
 
 [React Router Documentation for Upgrading](https://reactrouter.com/docs/en/v6/upgrading/v5)
 
@@ -29,7 +31,9 @@ You can fork and clone this repository and try to update this app on your own. J
 
 There is a branch called `v6` where you can see the final conversion.
 
-## Switch to Routes
+## Changes
+
+### Switch to Routes
 
 **App.js**
 
@@ -55,7 +59,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 </routes>
 ```
 
-## No more Nested Elements For Top Level Components
+### No more Nested Elements For Top Level Components
 
 Use element prop instead
 
@@ -79,7 +83,7 @@ Use element prop instead
 </Switch>
 ```
 
-## No more Exact Prop
+### No more Exact Prop
 
 There is now a better algorithm for loading the correct routes
 
@@ -108,7 +112,7 @@ If you need a route to act as a catchall (behavior when you did not use `exact` 
 </Switch>
 ```
 
-## Navigation After Event: History => useNavigate
+### Navigation After Event: History => useNavigate
 
 **Pages/New.js**
 
@@ -135,7 +139,7 @@ Note, the default behavior is to push onto the navigation stack, if you want to 
 navigate("/plants", { replace: true });
 ```
 
-## Redirects
+### Redirects
 
 **App.js**
 
@@ -150,7 +154,7 @@ navigate("/plants", { replace: true });
 
 ```
 
-## Nested Routes
+### Nested Routes
 
 Must wrap all nested routes `Route` elements with `Routes`.
 
@@ -189,7 +193,7 @@ Now routes are relative
 <Route path="/plants/:id/*" element={<Show />}></Route>
 ```
 
-## Nested Route Alternative
+### Nested Route Alternative
 
 Move the nested route to App.js
 
@@ -216,7 +220,7 @@ You must inform the component _where_ this component should be added
 </div>
 ```
 
-## Bonus
+### Bonus
 
 If you used the psuedoclass for active links in navigation this is what it would convert to.
 
