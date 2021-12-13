@@ -29,6 +29,14 @@ Install
 
 You can fork and clone this repository and try to update this app on your own. Just reading the changes is not enough to fully understand the changes and how to code them.
 
+
+On the `main` branch (on your fork/clone), 
+- run `npm install react-router-dom@6`, 
+- then `npm start`
+- Immediately, the page will not load due to an error
+- Either use the React Router documenation or check the summaries below in order to implement the necessary updates to get the app working again
+
+
 There is a branch called `v6` where you can see the final conversion.
 
 ## Changes
