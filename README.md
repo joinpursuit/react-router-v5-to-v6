@@ -8,6 +8,14 @@ React Router 6 has arrived and it has some breaking changes from 5. A lot of the
 
 ## How to Install a Specific Version of an NPM Library
 
+Generally, versions of code follow a specific pattern: x.y.z
+
+- x: Big update, breaking changes (code that worked before will break)
+- y: Minor update, usually not breaking changes. Rather bug fixes and possibly some new features
+- z: Patch update, usually security fixes, smaller bugs
+
+As we can see with React Router, going from version 5 - 6 introduces some breaking changes. Code that worked before will no longer work.
+
 **Install a specific version:**
 
 - V5: `npm install react-router-dom@5`
