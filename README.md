@@ -1,5 +1,11 @@
 # Updating from React Router Version 5 to Version 6
 
+React Router 6 has arrived and it has some breaking changes from 5. A lot of these changes are very positive and will help make using React Router an even better experience. It can be time consuming to learn all the updates, this little project can help you learn the changes that have likely impacted your projects so far.
+
+[React Router Documentation for Upgrading](https://reactrouter.com/docs/en/v6/upgrading/v5)
+
+[Summary Video in More Depth](https://www.youtube.com/watch?v=zEQiNFAwDGo)
+
 ## How to Install a Specific Version of an NPM Library
 
 **Install a specific version:**
@@ -10,9 +16,7 @@
 
 - Latest version: `npm install react-router-dome@latest` (danger, sometimes this will bring in experimental/possibly buggy versions)
 
-[React Router Documentation for Upgrading](https://reactrouter.com/docs/en/v6/upgrading/v5)
-
-[Summary Video in More Depth](https://www.youtube.com/watch?v=zEQiNFAwDGo)
+[Versioning](https://docs.npmjs.com/about-semantic-versioning#incrementing-semantic-versions-in-published-packages) on NPM
 
 ## Try it yourself
 
